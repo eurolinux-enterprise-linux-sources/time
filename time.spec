@@ -1,13 +1,15 @@
 Summary: A GNU utility for monitoring a program's use of system resources
 Name: time
 Version: 1.7
-Release: 37.1%{?dist}
+Release: 38%{?dist}
 License: GPLv2+
 Group: Applications/System
 Url: http://www.gnu.org/software/time/
 Source: ftp://prep.ai.mit.edu/pub/gnu/%{name}/%{name}-%{version}.tar.gz
 Patch0: time-1.7-destdir.patch
 Patch1: time-1.7-verbose.patch
+# Fix reporting maximum RSS, bug #703865
+Patch2: time-1.7-ru_maxrss-is-in-kilobytes-on-Linux.patch
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
@@ -21,6 +23,7 @@ the results.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1 -b .ru_maxrss
 
 %build
 echo "ac_cv_func_wait3=\${ac_cv_func_wait3='yes'}" >> config.cache
@@ -51,6 +54,9 @@ fi
 %{_infodir}/time.info*
 
 %changelog
+* Thu Jan 08 2015 Petr Pisar <ppisar@redhat.com> - 1.7-38
+- Fix maximal RSS report (bug #703865)
+
 * Mon Nov 30 2009 Dennis Gregorovic <dgregor@redhat.com> - 1.7-37.1
 - Rebuilt for RHEL 6
 
