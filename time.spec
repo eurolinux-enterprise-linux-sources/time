@@ -1,7 +1,7 @@
 Summary: A GNU utility for monitoring a program's use of system resources
 Name: time
 Version: 1.7
-Release: 43%{?dist}
+Release: 45%{?dist}
 License: GPLv2+
 Group: Applications/System
 Url: http://www.gnu.org/software/time/
@@ -51,6 +51,12 @@ fi
 %{_infodir}/time.info*
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.7-45
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.7-44
+- Mass rebuild 2013-12-27
+
 * Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.7-43
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
